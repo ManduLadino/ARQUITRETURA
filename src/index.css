@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #ffc125;
+  --primary-dark: #e6a800;
+  --primary-light: #ffd466;
+  --secondary: #1a1a1a;
+  --secondary-light: #333333;
+  --background: #f9f9f9;
+  --text: #1a1a1a;
+  --text-light: #666666;
+}
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-text;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-secondary font-medium px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white font-medium px-4 py-2 rounded-lg hover:bg-secondary-light transition-colors;
+  }
+
+  .btn-outline {
+    @apply border border-secondary text-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors;
+  }
+}
