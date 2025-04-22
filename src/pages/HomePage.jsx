@@ -1,7 +1,8 @@
-import Link from "next/link"
-import Button from "@/components/ui/Button"
+import { Link } from "react-router-dom"
+import { Card, CardContent } from "../components/ui/Card"
+import Button from "../components/ui/Button"
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
@@ -16,12 +17,12 @@ export default function HomePage() {
               entende do assunto.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/busca">
+              <Link to="/busca">
                 <Button size="lg" variant="secondary" className="font-bold">
                   Encontrar Arquiteto
                 </Button>
               </Link>
-              <Link href="/auth">
+              <Link to="/auth">
                 <Button size="lg" variant="outline" className="font-bold">
                   Sou Arquiteto
                 </Button>
@@ -100,55 +101,77 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* AI Assistant Promo */}
+      {/* Featured Architects */}
       <section className="py-16 bg-gray-50">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Conheça Nosso Assistente Virtual</h2>
-              <p className="text-gray-700 mb-4">
-                Nosso assistente virtual alimentado por IA está pronto para ajudar você a encontrar o arquiteto perfeito
-                para seu projeto.
-              </p>
-              <p className="text-gray-700 mb-6">
-                Tire dúvidas sobre arquitetura, receba recomendações personalizadas e obtenha informações sobre o
-                processo de contratação.
-              </p>
-              <Link href="/assistente">
-                <Button size="lg">Conversar com o Assistente</Button>
-              </Link>
-            </div>
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="bg-primary text-secondary p-4 rounded-t-lg font-bold flex items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                  />
-                </svg>
-                ArqBot - Assistente BUSCARQ
-              </div>
-              <div className="p-4 border-x border-b rounded-b-lg">
-                <div className="bg-gray-100 p-3 rounded-lg mb-4 max-w-[80%]">
-                  Olá! Sou o ArqBot, assistente virtual do BUSCARQ. Como posso ajudar você hoje?
-                </div>
-                <div className="bg-primary text-secondary p-3 rounded-lg mb-4 ml-auto max-w-[80%]">
-                  Preciso de um arquiteto especializado em design de interiores.
-                </div>
-                <div className="bg-gray-100 p-3 rounded-lg max-w-[80%]">
-                  Posso ajudar com isso! Temos vários arquitetos especializados em design de interiores. Você prefere
-                  alguém com experiência em residências ou espaços comerciais?
-                </div>
-              </div>
-            </div>
+          <h2 className="text-3xl font-bold text-center mb-12">Arquitetos em Destaque</h2>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((item) => (
+              <Card key={item} className="overflow-hidden hover:shadow-md transition-shadow">
+                <img
+                  src={`/placeholder.svg?height=200&width=400&text=Arquiteto ${item}`}
+                  alt={`Arquiteto ${item}`}
+                  className="w-full h-48 object-cover"
+                />
+                <CardContent>
+                  <h3 className="text-xl font-semibold mb-2">Arquiteto {item}</h3>
+                  <p className="text-gray-600 mb-4">
+                    Especialista em design de interiores com mais de 10 anos de experiência.
+                  </p>
+                  <Link to={`/arquiteto/arq${item}`}>
+                    <Button variant="outline" className="w-full">
+                      Ver Perfil
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link to="/busca">
+              <Button size="lg">Ver Todos os Arquitetos</Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-16 bg-white">
+        <div className="container">
+          <h2 className="text-3xl font-bold text-center mb-12">O que Nossos Clientes Dizem</h2>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[1, 2].map((item) => (
+              <Card key={item} className="bg-gray-50">
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                    <div>
+                      <h4 className="font-semibold">Cliente {item}</h4>
+                      <div className="flex text-yellow-400">
+                        {[...Array(5)].map((_, i) => (
+                          <svg
+                            key={i}
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-5 w-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-gray-600 italic">
+                    "O BUSCARQ me ajudou a encontrar o arquiteto perfeito para o meu projeto. O processo foi simples e
+                    rápido, e estou extremamente satisfeito com o resultado final."
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -160,7 +183,7 @@ export default function HomePage() {
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Junte-se a milhares de clientes satisfeitos que encontraram o arquiteto ideal através do BUSCARQ.
           </p>
-          <Link href="/auth">
+          <Link to="/auth">
             <Button size="lg" variant="secondary" className="hover:bg-secondary-light">
               Comece Agora
             </Button>
@@ -170,3 +193,5 @@ export default function HomePage() {
     </div>
   )
 }
+
+export default HomePage

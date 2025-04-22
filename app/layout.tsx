@@ -1,27 +1,34 @@
 import type React from "react"
-import { Inter } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
-import "./globals.css"
+import type { Metadata } from "next"
+import Navbar from "@/components/Navbar"
+import Footer from "@/components/Footer"
+import ChatWidget from "@/components/ChatWidget"
+import { checkApplicationHealth } from "@/lib/monitoring"
+import "@/styles/globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
+// Check application health on startup
+if (typeof window === "undefined") {
+  checkApplicationHealth()
+}
 
-export const metadata = {
-  title: "BUSCARQ - Conectando clientes a arquitetos",
-  description: "Plataforma que conecta clientes a arquitetos de forma rápida e intuitiva, inspirado no modelo Uber.",
+export const metadata: Metadata = {
+  title: "BUSCARQ - Conectando Arquitetos e Clientes",
+  description: "Encontre o arquiteto ideal para o seu projeto",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+    <html lang="pt-BR">
+      <body className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">{children}</main>
+        <Footer />
+        <ChatWidget />
       </body>
     </html>
   )
