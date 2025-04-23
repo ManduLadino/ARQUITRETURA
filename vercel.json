@@ -1,9 +1,9 @@
 {
   "buildCommand": "npm run build",
-  "framework": "nextjs",
+  "framework": "vite",
   "installCommand": "npm install",
   "regions": ["gru1"],
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "env": {
     "NODE_ENV": "production"
   }
