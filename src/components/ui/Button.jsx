@@ -5,9 +5,8 @@ const Button = forwardRef(({ className, variant = "primary", size = "md", childr
   const variants = {
     primary: "bg-primary text-secondary hover:bg-primary-dark focus:ring-primary",
     secondary: "bg-secondary text-white hover:bg-secondary-light focus:ring-secondary",
-    outline:
-      "bg-transparent border border-border text-text hover:bg-primary hover:text-secondary hover:border-primary focus:ring-primary",
-    ghost: "bg-transparent text-text hover:bg-gray-100 focus:ring-gray-500",
+    outline: "bg-transparent border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-primary",
+    ghost: "bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500",
   }
 
   const sizes = {
