@@ -1,5 +1,6 @@
 import type { GroqResponse } from "@/types/groq"
 import * as Sentry from "@sentry/nextjs"
+import { responseCache } from "./cache"
 
 export async function generateGroqResponse(prompt: string, image?: string): Promise<string> {
   // Create a Sentry span to track this function's performance
@@ -9,12 +10,40 @@ export async function generateGroqResponse(prompt: string, image?: string): Prom
   })
 
   try {
+    // Generate a cache key for this request
+    const cacheKey = responseCache.generateKey(prompt, image)
+
+    // Check if we have a cached response
+    const cachedResponse = responseCache.get(cacheKey)
+    if (cachedResponse) {
+      // Log cache hit to Sentry
+      Sentry.addBreadcrumb({
+        category: "ai",
+        message: "Using cached response",
+        data: {
+          prompt: prompt.substring(0, 100), // Only log the first 100 chars
+          hasImage: !!image,
+        },
+        level: "info",
+      })
+
+      return cachedResponse
+    }
+
+    // No cache hit, generate a new response
+    let response: string
+
     // Determine which API to use based on presence of an image
     if (image) {
-      return await generateVisionResponse(prompt, image)
+      response = await generateVisionResponse(prompt, image)
     } else {
-      return await generateTextResponse(prompt)
+      response = await generateTextResponse(prompt)
     }
+
+    // Cache the response for future use
+    responseCache.set(cacheKey, response)
+
+    return response
   } catch (error) {
     console.error("Error generating response:", error)
 

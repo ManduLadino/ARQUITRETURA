@@ -36,6 +36,7 @@ export interface ChatMessage {
   content: string
   image?: string
   timestamp: Date
+  fromCache?: boolean // Indicates if the response came from cache
 }
 
 export interface FeedbackData {

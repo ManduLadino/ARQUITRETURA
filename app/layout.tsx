@@ -5,10 +5,13 @@ import Footer from "@/components/Footer"
 import ChatWidget from "@/components/ChatWidget"
 import { checkApplicationHealth } from "@/lib/monitoring"
 import "@/styles/globals.css"
+import { initCacheRefresh } from "@/lib/init-cache-refresh"
 
 // Check application health on startup
 if (typeof window === "undefined") {
   checkApplicationHealth()
+  // Initialize cache refresh mechanism
+  initCacheRefresh()
 }
 
 export const metadata: Metadata = {

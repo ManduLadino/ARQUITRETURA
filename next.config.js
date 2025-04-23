@@ -19,6 +19,9 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    serverComponentsExternalPackages: ["@sentry/node"],
+  },
   // Optional: Add a trailing slash to all paths `/about` -> `/about/`
   // trailingSlash: true,
 

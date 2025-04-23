@@ -90,6 +90,7 @@ export default function ChatAssistant() {
         role: "assistant",
         content: data.response,
         timestamp: new Date(),
+        fromCache: data.meta?.fromCache, // Track if the response came from cache
       }
 
       setMessages((prev) => [...prev, assistantMessage])
@@ -209,6 +210,25 @@ export default function ChatAssistant() {
                   </div>
                 )}
                 {message.content}
+                {message.fromCache && (
+                  <div className="mt-1 text-xs text-gray-500 italic flex items-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3 w-3 mr-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                    resposta em cache
+                  </div>
+                )}
               </div>
               <div className="text-xs text-gray-500 mt-1">
                 {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
