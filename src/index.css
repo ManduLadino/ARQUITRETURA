@@ -8,9 +8,10 @@
   --primary-light: #ffd466;
   --secondary: #1a1a1a;
   --secondary-light: #333333;
-  --background: #f9f9f9;
-  --text: #1a1a1a;
+  --background: #fafafa;
+  --text: #333333;
   --text-light: #666666;
+  --border: #e0e0e0;
 }
 
 @layer base {
@@ -29,14 +30,14 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-secondary font-medium px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors;
+    @apply bg-primary text-secondary font-medium px-4 py-2 rounded-md hover:bg-primary-dark transition-colors;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-white font-medium px-4 py-2 rounded-lg hover:bg-secondary-light transition-colors;
+    @apply bg-secondary text-white font-medium px-4 py-2 rounded-md hover:bg-secondary-light transition-colors;
   }
 
   .btn-outline {
-    @apply border border-secondary text-secondary font-medium px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors;
+    @apply border border-border text-text font-medium px-4 py-2 rounded-md hover:bg-primary hover:text-secondary hover:border-primary transition-colors;
   }
 }

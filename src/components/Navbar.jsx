@@ -10,132 +10,144 @@ const Navbar = () => {
   const { user, isAuthenticated, logout } = useAuth()
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container py-3">
-        <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center">
-            <img src="/logo.png" alt="BUSCARQ" className="h-10 w-auto" />
+    <header className="bg-white py-4 border-b border-gray-100">
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        {/* Logo no canto superior esquerdo */}
+        <Link to="/" className="flex items-center">
+          <img src="/logo.png" alt="BUSCARQ" className="h-8 w-auto" />
+        </Link>
+
+        {/* Desktop Navigation - alinhado horizontalmente ao lado da logo */}
+        <nav className="hidden md:flex items-center space-x-8 ml-12">
+          <Link to="/busca" className="text-gray-600 hover:text-primary font-medium transition-colors">
+            Serviços
           </Link>
+          <Link to="/sobre" className="text-gray-600 hover:text-primary font-medium transition-colors">
+            Sobre
+          </Link>
+          <Link to="/portfolio" className="text-gray-600 hover:text-primary font-medium transition-colors">
+            Portfólio
+          </Link>
+          <Link to="/contato" className="text-gray-600 hover:text-primary font-medium transition-colors">
+            Contato
+          </Link>
+        </nav>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-primary font-medium">
-              Início
-            </Link>
-            <Link to="/busca" className="text-gray-700 hover:text-primary font-medium">
-              Buscar Arquitetos
-            </Link>
-            <Link to="/sobre" className="text-gray-700 hover:text-primary font-medium">
-              Sobre
-            </Link>
-            <Link to="/contato" className="text-gray-700 hover:text-primary font-medium">
-              Contato
-            </Link>
-
-            {isAuthenticated ? (
-              <div className="flex items-center space-x-4">
-                <Link to="/perfil" className="text-gray-700 hover:text-primary font-medium">
-                  Meu Perfil
-                </Link>
-                <Button variant="outline" onClick={logout}>
-                  Sair
-                </Button>
-              </div>
-            ) : (
-              <Link to="/auth">
-                <Button variant="primary">Entrar</Button>
+        {/* Auth Buttons */}
+        <div className="hidden md:flex items-center space-x-4">
+          {isAuthenticated ? (
+            <div className="flex items-center space-x-4">
+              <Link to="/perfil" className="text-gray-600 hover:text-primary font-medium transition-colors">
+                Meu Perfil
               </Link>
-            )}
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-              />
-            </svg>
-          </button>
+              <Button
+                variant="outline"
+                onClick={logout}
+                className="border-gray-300 text-gray-600 hover:bg-primary hover:text-secondary hover:border-primary transition-colors"
+              >
+                Sair
+              </Button>
+            </div>
+          ) : (
+            <Link to="/auth">
+              <Button
+                variant="outline"
+                className="border-gray-300 text-gray-600 hover:bg-primary hover:text-secondary hover:border-primary transition-colors"
+              >
+                Entrar
+              </Button>
+            </Link>
+          )}
         </div>
 
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <nav className="md:hidden mt-4 pb-4 space-y-4">
-            <Link
-              to="/"
-              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Início
-            </Link>
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+            />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <nav className="md:hidden mt-4 pb-4 border-t border-gray-100 px-4">
+          <div className="py-2 space-y-2">
             <Link
               to="/busca"
-              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
+              className="block py-2 text-gray-600 hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
-              Buscar Arquitetos
+              Serviços
             </Link>
             <Link
               to="/sobre"
-              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
+              className="block py-2 text-gray-600 hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Sobre
             </Link>
             <Link
+              to="/portfolio"
+              className="block py-2 text-gray-600 hover:text-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Portfólio
+            </Link>
+            <Link
               to="/contato"
-              className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
+              className="block py-2 text-gray-600 hover:text-primary"
               onClick={() => setIsMenuOpen(false)}
             >
               Contato
             </Link>
+          </div>
 
+          <div className="pt-2 border-t border-gray-100 mt-2">
             {isAuthenticated ? (
               <>
                 <Link
                   to="/perfil"
-                  className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded-md"
+                  className="block py-2 text-gray-600 hover:text-primary"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Meu Perfil
                 </Link>
-                <div className="pt-2">
-                  <Button
-                    variant="outline"
-                    className="w-full"
-                    onClick={() => {
-                      logout()
-                      setIsMenuOpen(false)
-                    }}
-                  >
-                    Sair
-                  </Button>
-                </div>
+                <button
+                  className="block w-full text-left py-2 text-gray-600 hover:text-primary"
+                  onClick={() => {
+                    logout()
+                    setIsMenuOpen(false)
+                  }}
+                >
+                  Sair
+                </button>
               </>
             ) : (
-              <div className="pt-2">
-                <Link to="/auth" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="primary" className="w-full">
-                    Entrar
-                  </Button>
-                </Link>
-              </div>
+              <Link
+                to="/auth"
+                onClick={() => setIsMenuOpen(false)}
+                className="block py-2 text-gray-600 hover:text-primary"
+              >
+                Entrar
+              </Link>
             )}
-          </nav>
-        )}
-      </div>
+          </div>
+        </nav>
+      )}
     </header>
   )
 }

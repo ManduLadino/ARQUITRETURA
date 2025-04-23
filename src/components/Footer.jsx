@@ -4,52 +4,52 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-secondary text-white">
-      <div className="container py-12">
+    <footer className="bg-white border-t border-gray-100 py-8">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <Link to="/" className="inline-block mb-4">
-              <img src="/logo.png" alt="BUSCARQ" className="h-10 w-auto bg-white p-1 rounded" />
+              <img src="/logo.png" alt="BUSCARQ" className="h-8 w-auto" />
             </Link>
-            <p className="text-gray-400">Conectando arquitetos e clientes de forma simples e eficiente.</p>
+            <p className="text-gray-500 text-sm">Conectando arquitetos e clientes de forma simples e eficiente.</p>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Links</h4>
-            <ul className="space-y-2">
+            <h4 className="text-sm font-semibold mb-4 text-gray-700">Links</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/" className="text-gray-500 hover:text-primary transition-colors">
                   Início
                 </Link>
               </li>
               <li>
-                <Link to="/busca" className="text-gray-400 hover:text-white transition-colors">
-                  Buscar Arquitetos
+                <Link to="/busca" className="text-gray-500 hover:text-primary transition-colors">
+                  Serviços
                 </Link>
               </li>
               <li>
-                <Link to="/sobre" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/sobre" className="text-gray-500 hover:text-primary transition-colors">
                   Sobre
                 </Link>
               </li>
               <li>
-                <Link to="/contato" className="text-gray-400 hover:text-white transition-colors">
-                  Contato
+                <Link to="/portfolio" className="text-gray-500 hover:text-primary transition-colors">
+                  Portfólio
                 </Link>
               </li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2">
+            <h4 className="text-sm font-semibold mb-4 text-gray-700">Legal</h4>
+            <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/termos" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/termos" className="text-gray-500 hover:text-primary transition-colors">
                   Termos de Uso
                 </Link>
               </li>
               <li>
-                <Link to="/privacidade" className="text-gray-400 hover:text-white transition-colors">
+                <Link to="/privacidade" className="text-gray-500 hover:text-primary transition-colors">
                   Política de Privacidade
                 </Link>
               </li>
@@ -57,12 +57,12 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contato</h4>
-            <ul className="space-y-2 text-gray-400">
+            <h4 className="text-sm font-semibold mb-4 text-gray-700">Contato</h4>
+            <ul className="space-y-2 text-sm text-gray-500">
               <li className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 mr-2"
+                  className="h-4 w-4 mr-2 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -79,7 +79,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 mr-2"
+                  className="h-4 w-4 mr-2 text-primary"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -97,7 +97,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <div className="border-t border-gray-100 mt-8 pt-8 text-center text-gray-500 text-sm">
           <p>&copy; {currentYear} BUSCARQ. Todos os direitos reservados.</p>
         </div>
       </div>
